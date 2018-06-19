@@ -12,7 +12,7 @@ class Circle extends React.Component {
 
   render () {
     return(
-      <circle cx={this.props.cx} cy={this.props.cy} r={this.props.r} />
+      <circle cx={this.props.cx} cy={this.props.cy} r={this.props.r} onMouseOver={this.props.onMouseOver}/>
     )
   }
 }
