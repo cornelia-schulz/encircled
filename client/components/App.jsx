@@ -1,18 +1,63 @@
 import React from 'react'
+import Circle from './Circle'
 
-const App = props => {
-  const circle = {
-    cx: props.width / 2,
-    cy: props.height / 2,
-    level: 0,
-    r: 256
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      circles: [
+        {
+          cx: props.width / 2,
+          cy: props.height / 2,
+          level: 0,
+          r: 256
+        }
+      ]
+    }
+    this.createCircles = this.createCircles.bind(this)
+  }
+  createCircles(parentCircle) {
+    this.setState({
+      circles: [...this.state.circles, 
+        {
+          cx: parentCircle.cx - parentCircle.r,
+          cy: parentCircle.cy,
+          level: parentCircle.level + 1,
+          r: parentCircle.r / 2
+        },
+        {
+          cx: parentCircle.cx + parentCircle.r,
+          cy: parentCircle.cy,
+          level: parentCircle.level + 1,
+          r: parentCircle.r / 2
+        },
+        {
+          cx: parentCircle.cx,
+          cy: parentCircle.cy - parentCircle.r,
+          level: parentCircle.level + 1,
+          r: parentCircle.r / 2
+        },
+        {
+          cx: parentCircle.cx,
+          cy: parentCircle.cy + parentCircle.r,
+          level: parentCircle.level + 1,
+          r: parentCircle.r / 2
+        }
+      ]
+    })
   }
 
-  return (
-    <svg width={props.width} height={props.height}>
-      <circle cx={circle.cx} cy={circle.cy} r={circle.r} />
-    </svg>
-  )
+  render() {
+    return (
+      <svg width={this.props.width} height={this.props.height} >
+        {this.state.circles.map(smallCircle => {
+          return (
+            <Circle cx={smallCircle.cx} cy={smallCircle.cy} r={smallCircle.r} onMouseOver={this.createCircles.bind(null, smallCircle)} />
+          )
+        })}
+      </svg >
+    )
+  }
 }
 
 export default App
