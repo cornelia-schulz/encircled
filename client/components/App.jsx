@@ -1,4 +1,5 @@
 import React from 'react'
+import Circle from './Circle'
 
 const App = props => {
   const circle = {
@@ -8,9 +9,40 @@ const App = props => {
     r: 256
   }
 
+  let circles = [
+    {
+      cx: circle.cx / 2 -64,
+      cy: circle.cy / 2,
+      level: 1,
+      r: 128
+    },
+    {
+      cx: circle.cx / 2 +64,
+      cy: circle.cy / 2,
+      level: 1,
+      r: 128
+    },
+    {
+      cx: circle.cx / 2,
+      cy: circle.cy / 2 -64,
+      level: 1,
+      r: 128
+    },
+    {
+      cx: circle.cx / 2,
+      cy: circle.cy / 2 +64,
+      level: 1,
+      r: 128
+    }
+  ]
+
   return (
     <svg width={props.width} height={props.height}>
-      <circle cx={circle.cx} cy={circle.cy} r={circle.r} />
+      <Circle cx={circle.cx} cy={circle.cy} r={circle.r} />
+      {circles.map(smallCircle => {
+        return (
+        <Circle cx={smallCircle.cx} cy={smallCircle.cy} r={smallCircle.r} />
+        )})}
     </svg>
   )
 }
