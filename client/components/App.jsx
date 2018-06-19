@@ -11,26 +11,26 @@ const App = props => {
 
   let circles = [
     {
-      cx: circle.cx / 2 -64,
-      cy: circle.cy / 2,
+      cx: circle.cx - 256,
+      cy: circle.cy,
       level: 1,
       r: 128
     },
     {
-      cx: circle.cx / 2 +64,
-      cy: circle.cy / 2,
+      cx: circle.cx + 256,
+      cy: circle.cy,
       level: 1,
       r: 128
     },
     {
-      cx: circle.cx / 2,
-      cy: circle.cy / 2 -64,
+      cx: circle.cx,
+      cy: circle.cy - 256,
       level: 1,
       r: 128
     },
     {
-      cx: circle.cx / 2,
-      cy: circle.cy / 2 +64,
+      cx: circle.cx,
+      cy: circle.cy + 256,
       level: 1,
       r: 128
     }
